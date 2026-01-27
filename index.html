@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observatorio Metropolitano de Desalojos y Conflictos Urbanos</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-link">
+                <div class="logo">
+                    <img src="img/Logo 4.png" alt="Logo Observatorio">
+                </div>
+            </a>
+            
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="index.html" class="active">Inicio</a></li>
+                    <li><a href="metodologia.html">Metodología</a></li>
+                    <li><a href="desalojos.html">Desalojos</a></li>
+                    <li><a href="conflictos.html">Conflictos Urbanos</a></li>
+                    <li><a href="equipo.html">Equipo</a></li>
+                    <li><a href="datos.html">Datos Abiertos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+     <div class="hero-carrusel-fondo">
+         <img src="img/Foto 1.png" alt="Fondo 1">
+         <img src="img/Foto 2.png" alt="Fondo 2">
+         <img src="img/Foto 3.jpg" alt="Fondo 3">
+     </div>
+     <div class="hero-overlay-dark"></div>
+         <div class="container hero-content-wrapper"> 
+             <div class="hero-content">
+                <h1>Bienvenido al Observatorio Metropolitano de Desalojos y Conflictos Urbanos</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, culpa fugit, vel asperiores necessitatibus similique debitis qui corrupti voluptate ea voluptatum recusandae beatae cumque commodi hic aut? Voluptates, accusamus animi!</p>
+             <div class="hero-buttons">
+                <a href="#" class="btn btn-rojo">Formulario de Desalojos</a>
+                <a href="#" class="btn btn-blanco">Formulario de Conflictos</a>
+            </div>
+         </div>
+     </div>
+    </section>
+
+    <section class="section-block bg-white">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mapa General del Observatorio</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi sunt rerum quod doloribus voluptatem ipsa culpa alias, dolorum aperiam ex neque, perspiciatis enim officia sit optio quam. A, nostrum placeat? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti deserunt aliquid dicta magnam quia architecto aliquam dolore nisi fugit ea delectus rem, dolores quas voluptatum provident nemo recusandae iste vitae.</p>
+            </div>
+            <div id="map-general"></div>
+        </div>
+    </section>
+
+    <section class="section-block bg-plomo">
+        <div class="container">
+            <div class="zigzag-row">
+                <div class="text-col">
+                    <h3>Registro de Desalojos</h3>
+                    <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, quibusdam non. Delectus, velit hic dignissimos, vero repudiandae, quis fuga necessitatibus blanditiis culpa expedita asperiores laudantium quod facilis aut libero ea? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam, ipsam illo. Enim exercitationem numquam atque sit eum ut eaque sed repellendus cumque quisquam officia saepe, amet beatae esse. Impedit, a.</p>
+                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, repudiandae recusandae tempore commodi ex non molestias officia eaque aspernatur maxime dolorum vel delectus excepturi quis ad pariatur veniam porro velit? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis officia quasi illo, culpa aut ducimus corrupti consectetur, vitae laborum non repudiandae placeat quisquam dolores nesciunt hic a sunt aspernatur voluptate!</p>
+                    <a href="desalojos.html" class="btn btn-rojo" style="display:inline-block; margin-top:10px;">Colabora con nosotros</a>
+                </div>
+                <div class="map-col">
+                    <div id="map-desalojos" class="dual-map"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-block bg-white">
+        <div class="container">
+            <div class="zigzag-row reves">
+                <div class="text-col">
+                    <h3>Conflictos Urbanos</h3>
+                    <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, quibusdam non. Delectus, velit hic dignissimos, vero repudiandae, quis fuga necessitatibus blanditiis culpa expedita asperiores laudantium quod facilis aut libero ea? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam, ipsam illo. Enim exercitationem numquam atque sit eum ut eaque sed repellendus cumque quisquam officia saepe, amet beatae esse. Impedit, a.</p>
+                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, repudiandae recusandae tempore commodi ex non molestias officia eaque aspernatur maxime dolorum vel delectus excepturi quis ad pariatur veniam porro velit? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis officia quasi illo, culpa aut ducimus corrupti consectetur, vitae laborum non repudiandae placeat quisquam dolores nesciunt hic a sunt aspernatur voluptate!</p>
+                    <a href="conflictos.html" class="btn btn-blanco" style="display:inline-block; margin-top:10px; background-color:#eee;">Descargar Datos</a>
+                </div>
+                <div class="map-col">
+                    <div id="map-conflictos" class="dual-map"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-block bg-plomo">
+        <div class="container centered-content">
+            <h3>Estadísticas de Desalojos</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ab blanditiis cum quam saepe. Magnam officiis ratione voluptates velit quaerat, autem, non architecto temporibus, eaque ullam optio blanditiis sequi quos? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic animi quis perferendis dolorum sed, quae nesciunt! Amet ullam nisi consequatur nemo, expedita molestias blanditiis perferendis non vel iste recusandae repudiandae!</p>
+            
+            <div class="charts-grid">
+                 <div class="chart-placeholder">[Gráfico Desalojos 1]</div>
+                 <div class="chart-placeholder">[Gráfico Desalojos 2]</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-block bg-white">
+        <div class="container centered-content">
+            <h3>Estadísticas de Conflictos Urbanos</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi repellendus tempore rem aspernatur iure facilis repudiandae perspiciatis quasi, vel cum dolor, dolorum ut velit consequuntur iste libero necessitatibus nostrum accusantium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, veritatis dicta eaque odit aliquam ad rerum enim veniam ratione vero nihil cumque voluptatum laborum voluptas dolores ex ab ipsa maxime?</p>
+            
+            <div class="charts-grid">
+                 <div class="chart-placeholder">[Gráfico Conflictos 1]</div>
+                 <div class="chart-placeholder">[Gráfico Conflictos 2]</div>
+                 <div class="chart-placeholder">[Gráfico Conflictos 3]</div>
+            </div>
+            
+            </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <img src="img/Logo 3.png" alt="Logo Pequeño">
+            </div>
+            <ul class="footer-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="metodologia.html">Metodología</a></li>
+                <li><a href="desalojos.html">Desalojos</a></li>
+                <li><a href="conflictos.html">Conflictos Urbanos</a></li>
+                <li><a href="equipo.html">Equipo</a></li>
+                <li><a href="datos.html">Datos Abiertos</a></li>
+            </ul>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <p>&copy; 2026 Observatorio Metropolitano de Desalojos y Conflictos Urbanos</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/map.js"></script>
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("navMenu");
+            menu.classList.toggle("show");
+        }
+    </script>
+</body>
+</html>

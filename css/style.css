@@ -1,0 +1,244 @@
+/* =========================================
+   1. VARIABLES GLOBALES
+   ========================================= */
+:root {
+    /* Colores */
+    --color-primario: #fd2827;      /* Rojo institucional */
+    --color-texto: #333333;         /* Gris oscuro */
+    --color-titulo: #121212;        /* Negro */
+    --color-blanco: #ffffff;
+    --color-fondo-alt: #f4f6f8;     /* Plomo suave */
+    --bg-footer: #2c2c2c;
+    --txt-footer: #bbbbbb;
+
+    /* Dimensiones Maestras */
+    --ancho-maximo: 1200px;
+    --altura-header: 70px;
+    --borde-suave: 1px solid #e1e4e8;
+    --radio-borde: 8px;
+}
+
+/* Reseteo básico */
+* { box-sizing: border-box; }
+body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: var(--color-texto); }
+h1, h2, h3 { color: var(--color-titulo); margin-top: 0; }
+a { text-decoration: none; transition: all 0.3s ease; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* =========================================
+   2. EL CONTENEDOR MAESTRO
+   ========================================= */
+.container {
+    width: 100%;
+    max-width: var(--ancho-maximo);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-block { padding: 60px 0; }
+.bg-white { background-color: var(--color-blanco); }
+.bg-plomo { background-color: var(--color-fondo-alt); border-top: var(--borde-suave); border-bottom: var(--borde-suave); }
+.section-title { text-align: center; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto; }
+.centered-content { text-align: center; }
+
+/* =========================================
+   3. HEADER Y NAVEGACIÓN
+   ========================================= */
+.main-header {
+    background-color: var(--color-blanco);
+    height: var(--altura-header);
+    position: sticky; top: 0; 
+    z-index: 10000; /* Muy alto para que quede sobre el mapa */
+    display: flex; align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.logo img { max-height: 50px; width: auto; }
+
+/* Menú PC */
+.nav-menu ul { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; }
+.nav-menu a { color: var(--color-titulo); font-weight: 600; font-size: 0.95rem; }
+.nav-menu a:hover, .nav-menu a.active { color: var(--color-primario); }
+
+/* Botón Hamburguesa (oculto en PC) */
+.mobile-menu-btn { display: none; background: none; border: none; color: var(--color-primario); font-size: 28px; cursor: pointer; }
+
+/* =========================================
+   4. HERO (BIENVENIDA)
+   ========================================= */
+.hero-section {
+    position: relative; /* Necesario para que lo de adentro se posicione bien */
+    width: 100%;
+    min-height: 60vh;   /* Altura mínima igual que antes */
+    display: flex; 
+    align-items: center; 
+    text-align: center; 
+    color: var(--color-blanco);
+    overflow: hidden;   /* Para que las imágenes no se salgan */
+    padding: 0;         /* Quitamos padding al padre, lo manejará el contenido */
+}
+
+.hero-carrusel-fondo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Nivel más bajo */
+}
+
+.hero-carrusel-fondo img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajuste perfecto sin deformar */
+    opacity: 0;        /* Empiezan invisibles */
+    animation: fadeSlide 12s infinite; /* Animación de 16 segundos en bucle */
+}
+
+/* LOGICA DE TIEMPOS DE ANIMACIÓN (Para 4 imágenes) */
+/* Cada imagen entra en un momento distinto */
+.hero-carrusel-fondo img:nth-child(1) { animation-delay: 0s; }
+.hero-carrusel-fondo img:nth-child(2) { animation-delay: 4s; }
+.hero-carrusel-fondo img:nth-child(3) { animation-delay: 8s; }
+
+/* --- CAPA 2: EL FILTRO OSCURO --- */
+.hero-overlay-dark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Color negro al 60% de opacidad */
+    z-index: 2; /* Encima de las fotos */
+}
+
+/* --- CAPA 3: EL CONTENIDO (TEXTO) --- */
+.hero-content-wrapper {
+    position: relative;
+    z-index: 3; /* Encima de todo */
+    width: 100%;
+    padding: 40px 0; /* El padding que antes tenía el section */
+}
+
+.hero-content {
+    width: 100%; 
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-content h1 { font-size: 2.2rem; margin-bottom: 1rem; color: var(--color-blanco); text-shadow: 2px 2px 4px rgba(0,0,0,0.6); }
+.hero-buttons { margin-top: 25px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+.btn { padding: 10px 25px; border-radius: 4px; font-weight: bold; font-size: 0.9rem; }
+.btn:hover { transform: translateY(-2px); }
+.btn-rojo { background-color: var(--color-primario); color: white; border: 2px solid var(--color-primario); }
+.btn-blanco { background-color: white; color: var(--color-titulo); border: 2px solid white; }
+
+/* --- LA ANIMACIÓN (Keyframes) --- */
+@keyframes fadeSlide {
+    0% { opacity: 0; transform: scale(1); }
+    5% { opacity: 1; }       /* Aparece rápido */
+    30% { opacity: 1; }      /* Se queda visible un poco más (hasta el 30%) */
+    35% { opacity: 0; transform: scale(1.05); } /* Desaparece justo cuando entra la otra */
+    100% { opacity: 0; }
+}
+/* =========================================
+   5. MAPAS Y ESTRUCTURA ZIG-ZAG
+   ========================================= */
+#map-general {
+    height: 500px;
+    width: 100%;
+    border-radius: var(--radio-borde);
+    border: 1px solid #ddd;   /* Borde gris suave */
+    background-color: #f4f6f8;
+    z-index: 1; /* Bajo para no tapar el menú */
+}
+
+.zigzag-row { display: flex; align-items: center; gap: 60px; }
+.zigzag-row.reves { flex-direction: row-reverse; }
+.text-col { flex: 1; }
+.map-col  { flex: 1; }
+
+/* Justificación global del texto descriptivo */
+.text-col p { text-align: justify; }
+
+.dual-map {
+    height: 400px; width: 100%;
+    border: var(--borde-suave);
+    border-radius: var(--radio-borde);
+    background-color: #eee;
+    z-index: 1;
+}
+
+/* =========================================
+   6. GRÁFICOS (Placeholders)
+   ========================================= */
+.charts-grid {
+    display: flex; gap: 20px; width: 100%; justify-content: space-between;
+}
+.chart-placeholder {
+    flex: 1; height: 300px; background: #e9ecef;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px dashed #cbd5e0;
+    border-radius: var(--radio-borde);
+    color: #666;
+}
+
+/* =========================================
+   7. FOOTER
+   ========================================= */
+.main-footer { background-color: var(--bg-footer); color: var(--txt-footer); padding: 50px 0 20px 0; text-align: center; }
+.footer-logo img { height: 40px; margin: 0 auto; opacity: 0.8; }
+.footer-links { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; margin-top: 30px; }
+.footer-links a { color: var(--color-blanco); }
+.footer-links a:hover { color: var(--color-primario); }
+.copyright { border-top: 1px solid #444; margin-top: 40px; padding-top: 20px; font-size: 0.85rem; color: #777; }
+
+/* =========================================
+   8. RESPONSIVE (CELULAR Y TABLET)
+   ========================================= */
+@media (max-width: 768px) {
+    /* --- Ajustes del Header/Menú --- */
+    .mobile-menu-btn { display: block; }
+    
+    .nav-menu { 
+        display: none; /* Oculto por defecto */
+        flex-direction: column; 
+        position: absolute; 
+        top: var(--altura-header); 
+        left: 0; 
+        width: 100%; /* Ancho completo */
+        background: var(--color-blanco); 
+        padding: 0; 
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+        border-top: 1px solid #eee;
+    }
+
+    .nav-menu.show { display: flex; } /* Clase que agrega JS */
+    
+    .nav-menu ul { flex-direction: column; width: 100%; gap: 0; }
+    .nav-menu li { width: 100%; text-align: center; }
+    .nav-menu a { 
+        display: block; 
+        padding: 15px 20px; 
+        border-bottom: 1px solid #f0f0f0; 
+        width: 100%;
+    }
+
+    /* --- Ajustes del Hero (Bienvenida) --- */
+    .hero-content h1 { font-size: 1.6rem; } /* Letra más pequeña en celular */
+    .hero-buttons { flex-direction: column; gap: 10px; } /* Botones uno debajo de otro */
+    .btn { width: 100%; display: block; } /* Botones ancho completo */
+
+    /* --- Ajustes Generales de Secciones --- */
+    .zigzag-row, .zigzag-row.reves, .charts-grid { flex-direction: column; gap: 30px; }
+    .text-col, .map-col, .chart-placeholder { width: 100%; flex: none; }
+    
+    /* Mantener justificado en móvil */
+    .text-col p { text-align: justify; } 
+    
+    /* Mapas más pequeños en móvil */
+    #map-general { height: 350px; }
+}
